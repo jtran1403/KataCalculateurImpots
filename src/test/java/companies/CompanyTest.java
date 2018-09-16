@@ -18,4 +18,17 @@ public class CompanyTest {
         assertThat(company).isNotNull();
         assertThat(company.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.25D));
     }
+    @Test
+    public void should_recognize_a_SAS_as_a_company() {
+        final Company company = SAS.newBuilder()
+                .withSiretNumber("732 829 320 00074")
+                .withName("Paris SAS")
+                .withHeadOfficeAddress("25 rue victor Hugo")
+                .build();
+
+        assertThat(company).isNotNull();
+        assertThat(company.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.33D));
+    }
+
+
 }

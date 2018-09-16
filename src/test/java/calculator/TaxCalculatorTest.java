@@ -1,7 +1,10 @@
 package calculator;
 
 import companies.AutoEntrepreneur;
+import companies.Company;
+import companies.SAS;
 import companies.Turnover;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -11,17 +14,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TaxCalculatorTest {
 
+    private TaxCalculator taxCalculator;
+
+    @Before
+    public void setUp() throws Exception {
+        taxCalculator = new TaxCalculator();
+    }
+
     @Test
-    public void should_calculate_the_tax_due_by_an_autoentrepreneur() {
+    public void should_calculate_the_tax_due_by_an_auto_entrepreneur() {
         //Given
-        TaxCalculator taxCalculator = new TaxCalculator();
-        final AutoEntrepreneur autoEntrepreneur = AutoEntrepreneur.newBuilder().withSiretNumber("ABC123").withName("Start up 1").build();
+        final Company autoEntrepreneur = AutoEntrepreneur.newBuilder().withSiretNumber("ABC123").withName("Start up 1").build();
+        final Turnover autoEntrepreneurTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.00D)).build();
 
         //When
-        final BigDecimal taxValue = taxCalculator.calculateTaxes(autoEntrepreneur, Turnover.newBuilder().withValue(new BigDecimal(10000.00D)).build());
+        final BigDecimal taxValue = taxCalculator.calculateTaxes(autoEntrepreneur, autoEntrepreneurTurnover);
 
         //Then
         final BigDecimal expectedTaxValue = new BigDecimal(2500.00D).setScale(2, RoundingMode.CEILING);
+        assertThat(taxValue).isEqualTo(expectedTaxValue);
+    }
+
+    @Test
+    public void should_calculate_the_tax_due_by_a_sas() {
+        //Given
+        final Company sas = SAS.newBuilder()
+                .withSiretNumber("732 829 320 00074")
+                .withName("Paris SAS")
+                .withHeadOfficeAddress("25 rue victor Hugo")
+                .build();
+        final Turnover sasTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.00D)).build();
+
+        //When
+        final BigDecimal taxValue = taxCalculator.calculateTaxes(sas, sasTurnover);
+
+        //Then
+        final BigDecimal expectedTaxValue = new BigDecimal(3300.00).setScale(2, RoundingMode.CEILING);
         assertThat(taxValue).isEqualTo(expectedTaxValue);
     }
 }

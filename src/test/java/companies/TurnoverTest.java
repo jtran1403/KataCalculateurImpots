@@ -13,6 +13,7 @@ public class TurnoverTest {
     public void should_return_the_turn_over_of_a_company_in_euros() {
         final Turnover turnover = Turnover.newBuilder().withValue(BigDecimal.valueOf(new Double("10000.99"))).build();
 
+        assertThat(turnover).isNotNull();
         assertThat(turnover.getValue()).isEqualTo(BigDecimal.valueOf(new Double("10000.99")));
         assertThat(turnover.getCurrency()).isEqualTo("EURO(S)");
     }

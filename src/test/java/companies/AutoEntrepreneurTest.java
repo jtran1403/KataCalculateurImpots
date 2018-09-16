@@ -17,6 +17,7 @@ public class AutoEntrepreneurTest {
                 .withName("Monaco Free Lancer John")
                 .build();
 
+        assertThat(autoEntrepreneur).isNotNull();
         assertThat(autoEntrepreneur.getSiretNumber()).isEqualTo("MONACOCONFO001");
         assertThat(autoEntrepreneur.getName()).isEqualTo("Monaco Free Lancer John");
         assertThat(autoEntrepreneur.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.25D));
