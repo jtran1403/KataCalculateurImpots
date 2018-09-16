@@ -3,7 +3,7 @@ package companies;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class AutoEntrepreneur {
+public class AutoEntrepreneur implements Company {
     private String siretNumber;
     private String name;
     private static final BigDecimal taxRate = BigDecimal.valueOf(0.25D);
