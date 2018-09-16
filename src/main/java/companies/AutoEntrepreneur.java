@@ -1,10 +1,12 @@
 package companies;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class AutoEntrepreneur {
     private String siretNumber;
     private String name;
+    private static final BigDecimal taxRate = BigDecimal.valueOf(0.25D);
 
     public String getSiretNumber() {
         return siretNumber;
@@ -12,6 +14,10 @@ public class AutoEntrepreneur {
 
     public String getName() {
         return name;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
     }
 
     public static Builder newBuilder() {

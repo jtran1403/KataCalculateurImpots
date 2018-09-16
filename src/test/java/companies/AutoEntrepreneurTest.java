@@ -2,6 +2,8 @@ package companies;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -17,6 +19,7 @@ public class AutoEntrepreneurTest {
 
         assertThat(autoEntrepreneur.getSiretNumber()).isEqualTo("MONACOCONFO001");
         assertThat(autoEntrepreneur.getName()).isEqualTo("Monaco Free Lancer John");
+        assertThat(autoEntrepreneur.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.25D));
     }
 
     @Test
