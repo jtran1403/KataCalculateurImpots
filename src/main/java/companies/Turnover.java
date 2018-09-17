@@ -1,8 +1,12 @@
 package companies;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@JsonDeserialize(builder = Turnover.Builder.class)
 public class Turnover {
     private BigDecimal value;
 
@@ -18,6 +22,7 @@ public class Turnover {
         return value;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private BigDecimal value;
 
@@ -33,5 +38,26 @@ public class Turnover {
             Objects.requireNonNull(this.value, "The value is mandatory");
             return new Turnover(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Turnover turnover = (Turnover) o;
+        return Objects.equals(value, turnover.value);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Turnover{" +
+                "value=" + value +
+                '}';
     }
 }
