@@ -15,7 +15,6 @@ public class TurnoverTest {
 
         assertThat(turnover).isNotNull();
         assertThat(turnover.getValue()).isEqualTo(BigDecimal.valueOf(new Double("10000.99")));
-        assertThat(turnover.getCurrency()).isEqualTo("EURO(S)");
     }
 
     @Test

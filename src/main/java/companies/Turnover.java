@@ -5,14 +5,9 @@ import java.util.Objects;
 
 public class Turnover {
     private BigDecimal value;
-    private static final String currency = "EURO(S)";
 
     public BigDecimal getValue() {
         return value;
-    }
-
-    public String getCurrency() {
-        return currency;
     }
 
     public static Builder newBuilder() {
