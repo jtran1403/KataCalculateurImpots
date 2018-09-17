@@ -11,10 +11,10 @@ public class TurnoverTest {
 
     @Test
     public void should_return_the_turn_over_of_a_company_in_euros() {
-        final Turnover turnover = Turnover.newBuilder().withValue(BigDecimal.valueOf(new Double("10000.99"))).build();
+        final Turnover turnover = Turnover.newBuilder().withValue(BigDecimal.valueOf(10000.99D)).build();
 
         assertThat(turnover).isNotNull();
-        assertThat(turnover.getValue()).isEqualTo(BigDecimal.valueOf(new Double("10000.99")));
+        assertThat(turnover.getValue()).isEqualTo(BigDecimal.valueOf(10000.99D));
     }
 
     @Test
@@ -23,5 +23,4 @@ public class TurnoverTest {
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("The value is mandatory");
     }
-
 }
