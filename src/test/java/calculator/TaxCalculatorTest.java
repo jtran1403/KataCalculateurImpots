@@ -24,14 +24,18 @@ public class TaxCalculatorTest {
     @Test
     public void should_calculate_the_tax_due_by_an_auto_entrepreneur() {
         //Given
-        final Company autoEntrepreneur = AutoEntrepreneur.newBuilder().withSiretNumber("ABC123").withName("Start up 1").build();
-        final Turnover autoEntrepreneurTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.00D)).build();
+        final Company autoEntrepreneur = AutoEntrepreneur.newBuilder()
+                .withSiretNumber("ABC123")
+                .withName("Start up 1").build();
+        final Turnover autoEntrepreneurTurnover = Turnover.newBuilder()
+                .withValue(new BigDecimal(10000.00D))
+                .build();
+        final BigDecimal expectedTaxValue = new BigDecimal(2500.00D).setScale(2, RoundingMode.HALF_UP);
 
         //When
         final BigDecimal taxValue = taxCalculator.calculateTaxes(autoEntrepreneur, autoEntrepreneurTurnover);
 
         //Then
-        final BigDecimal expectedTaxValue = new BigDecimal(2500.00D).setScale(2, RoundingMode.CEILING);
         assertThat(taxValue).isEqualTo(expectedTaxValue);
     }
 
@@ -43,13 +47,13 @@ public class TaxCalculatorTest {
                 .withName("Paris SAS")
                 .withHeadOfficeAddress("25 rue victor Hugo")
                 .build();
-        final Turnover sasTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.00D)).build();
+        final Turnover sasTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.17D)).build();
+        final BigDecimal expectedTaxValue = new BigDecimal(3300.06D).setScale(2, RoundingMode.HALF_UP);
 
         //When
         final BigDecimal taxValue = taxCalculator.calculateTaxes(sas, sasTurnover);
 
         //Then
-        final BigDecimal expectedTaxValue = new BigDecimal(3300.00).setScale(2, RoundingMode.CEILING);
         assertThat(taxValue).isEqualTo(expectedTaxValue);
     }
 }

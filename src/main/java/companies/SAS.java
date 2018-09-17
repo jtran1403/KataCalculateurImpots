@@ -1,13 +1,15 @@
 package companies;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class SAS implements Company {
     private String siretNumber;
     private String name;
     private String headOfficeAddress;
-    private static final BigDecimal taxRate = BigDecimal.valueOf(0.33D);
+    //TODO: Implement Rate class
+    private static final BigDecimal taxRate = new BigDecimal(0.33D).setScale(2, RoundingMode.HALF_UP);
 
     public String getSiretNumber() {
         return siretNumber;

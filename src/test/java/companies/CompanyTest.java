@@ -3,6 +3,7 @@ package companies;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +17,7 @@ public class CompanyTest {
                 .build();
 
         assertThat(company).isNotNull();
-        assertThat(company.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.25D));
+        assertThat(company.getTaxRate()).isEqualTo(new BigDecimal(0.25D).setScale(2, RoundingMode.HALF_UP));
     }
     @Test
     public void should_recognize_a_SAS_as_a_company() {
@@ -27,8 +28,6 @@ public class CompanyTest {
                 .build();
 
         assertThat(company).isNotNull();
-        assertThat(company.getTaxRate()).isEqualTo(BigDecimal.valueOf(0.33D));
+        assertThat(company.getTaxRate()).isEqualTo(new BigDecimal(0.33D).setScale(2, RoundingMode.HALF_UP));
     }
-
-
 }
