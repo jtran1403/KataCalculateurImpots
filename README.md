@@ -27,3 +27,12 @@ Par ailleurs, le calcul des impôts devra respecter les règles de gestion suiva
 
 > Note : le CA de l'entreprise sera fourni au service par la classe de test et il n'est pas nécessaire de l'inclure dans les propriétés des entreprises.
 
+# En anglais
+
+J'ai pris la liberté de traduire en anglais (même si j'aurais bien aimé avoir un expert pour me confirmer), voici les mots-clés techniques :
+
+| ------------------------ |:-----------------------------------------:|
+| turnover                 | chiffre d'affaires annuel de l'entreprise |
+| name                     | dénomination                              |
+| head office address      | adresse du siège social                   |
+| auto-entrepreneur        | auto-entreprise                           |
