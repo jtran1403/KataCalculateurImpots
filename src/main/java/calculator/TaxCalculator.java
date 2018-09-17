@@ -11,7 +11,6 @@ public class TaxCalculator {
     public BigDecimal calculateTaxes(Company company, Turnover companyTurnover) {
         final BigDecimal turnover = companyTurnover.getValue();
         final BigDecimal companyTaxRate = company.getTaxRate();
-        final BigDecimal taxValue = turnover.multiply(companyTaxRate);
-        return taxValue.setScale(2, RoundingMode.HALF_UP);
+        return turnover.multiply(companyTaxRate);
     }
 }

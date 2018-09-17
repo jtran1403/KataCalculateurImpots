@@ -27,10 +27,12 @@ public class TaxCalculatorTest {
         final Company autoEntrepreneur = AutoEntrepreneur.newBuilder()
                 .withSiretNumber("ABC123")
                 .withName("Start up 1").build();
+        final BigDecimal turnoverValue = new BigDecimal(10000.00D);
         final Turnover autoEntrepreneurTurnover = Turnover.newBuilder()
-                .withValue(new BigDecimal(10000.00D))
+                .withValue(turnoverValue)
                 .build();
-        final BigDecimal expectedTaxValue = new BigDecimal(2500.00D).setScale(2, RoundingMode.HALF_UP);
+        final BigDecimal expectedAutoEntrepreneurTaxRate = new BigDecimal(0.25D).setScale(2, RoundingMode.HALF_UP);
+        final BigDecimal expectedTaxValue = turnoverValue.multiply(expectedAutoEntrepreneurTaxRate);
 
         //When
         final BigDecimal taxValue = taxCalculator.calculateTaxes(autoEntrepreneur, autoEntrepreneurTurnover);
@@ -47,8 +49,10 @@ public class TaxCalculatorTest {
                 .withName("Paris SAS")
                 .withHeadOfficeAddress("25 rue victor Hugo")
                 .build();
-        final Turnover sasTurnover = Turnover.newBuilder().withValue(new BigDecimal(10000.17D)).build();
-        final BigDecimal expectedTaxValue = new BigDecimal(3300.06D).setScale(2, RoundingMode.HALF_UP);
+        final BigDecimal turnoverValue = new BigDecimal(10000.17D);
+        final Turnover sasTurnover = Turnover.newBuilder().withValue(turnoverValue).build();
+        final BigDecimal expectedAutoEntrepreneurTaxRate = new BigDecimal(0.33D).setScale(2, RoundingMode.HALF_UP);
+        final BigDecimal expectedTaxValue = turnoverValue.multiply(expectedAutoEntrepreneurTaxRate);
 
         //When
         final BigDecimal taxValue = taxCalculator.calculateTaxes(sas, sasTurnover);
