@@ -6,12 +6,16 @@ import java.util.Objects;
 public class Turnover {
     private BigDecimal value;
 
-    public BigDecimal getValue() {
-        return value;
+    private Turnover(Builder builder) {
+        value = builder.value;
     }
 
     public static Builder newBuilder() {
         return new Builder();
+    }
+
+    public BigDecimal getValue() {
+        return value;
     }
 
     public static final class Builder {
@@ -20,16 +24,14 @@ public class Turnover {
         private Builder() {
         }
 
-        public Builder withValue(BigDecimal value) {
-            this.value = value;
+        public Builder withValue(BigDecimal val) {
+            value = val;
             return this;
         }
 
         public Turnover build() {
             Objects.requireNonNull(this.value, "The value is mandatory");
-            Turnover turnover = new Turnover();
-            turnover.value = this.value;
-            return turnover;
+            return new Turnover(this);
         }
     }
 }

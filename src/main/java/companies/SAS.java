@@ -11,6 +11,16 @@ public class SAS implements Company {
     //TODO: Implement Rate class
     private static final BigDecimal taxRate = new BigDecimal(0.33D).setScale(2, RoundingMode.HALF_UP);
 
+    private SAS(Builder builder) {
+        siretNumber = builder.siretNumber;
+        name = builder.name;
+        headOfficeAddress = builder.headOfficeAddress;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getSiretNumber() {
         return siretNumber;
     }
@@ -27,10 +37,6 @@ public class SAS implements Company {
         return taxRate;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
     public static final class Builder {
         private String siretNumber;
         private String name;
@@ -39,18 +45,18 @@ public class SAS implements Company {
         private Builder() {
         }
 
-        public Builder withSiretNumber(String siretNumber) {
-            this.siretNumber = siretNumber;
+        public Builder withSiretNumber(String val) {
+            siretNumber = val;
             return this;
         }
 
-        public Builder withName(String name) {
-            this.name = name;
+        public Builder withName(String val) {
+            name = val;
             return this;
         }
 
-        public Builder withHeadOfficeAddress(String headOfficeAddress) {
-            this.headOfficeAddress = headOfficeAddress;
+        public Builder withHeadOfficeAddress(String val) {
+            headOfficeAddress = val;
             return this;
         }
 
@@ -58,11 +64,7 @@ public class SAS implements Company {
             Objects.requireNonNull(this.siretNumber, "The SIRET number is mandatory");
             Objects.requireNonNull(this.name, "The name is mandatory");
             Objects.requireNonNull(this.headOfficeAddress, "The head office address is mandatory");
-            SAS sAS = new SAS();
-            sAS.name = this.name;
-            sAS.siretNumber = this.siretNumber;
-            sAS.headOfficeAddress = this.headOfficeAddress;
-            return sAS;
+            return new SAS(this);
         }
     }
 }
