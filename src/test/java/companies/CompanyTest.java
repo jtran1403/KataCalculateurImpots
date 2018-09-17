@@ -15,7 +15,9 @@ public class CompanyTest {
 
         assertThat(company).isNotNull();
         assertThat(company.getTaxRate()).isEqualTo(TaxRate.getTaxRateWithTwoDigitsOf(0.25D));
+        assertThat(company.getSiretNumber()).isEqualTo("MONACOCONFO001");
     }
+
     @Test
     public void should_recognize_a_SAS_as_a_company() {
         final Company company = SAS.newBuilder()
@@ -26,5 +28,6 @@ public class CompanyTest {
 
         assertThat(company).isNotNull();
         assertThat(company.getTaxRate()).isEqualTo(TaxRate.getTaxRateWithTwoDigitsOf(0.33D));
+        assertThat(company.getSiretNumber()).isEqualTo("732 829 320 00074");
     }
 }
