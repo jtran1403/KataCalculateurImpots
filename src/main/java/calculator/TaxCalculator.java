@@ -4,7 +4,6 @@ import companies.Company;
 import companies.Turnover;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class TaxCalculator {
 

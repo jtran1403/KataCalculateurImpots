@@ -1,13 +1,12 @@
 package companies;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
 
 public class AutoEntrepreneur implements Company {
     private String siretNumber;
     private String name;
-    private static final BigDecimal taxRate = new BigDecimal(0.25D).setScale(2, RoundingMode.HALF_UP);
+    private static final BigDecimal taxRate = TaxRate.getTaxRateWithTwoDigitsOf(0.25D);
 
     private AutoEntrepreneur(Builder builder) {
         siretNumber = builder.siretNumber;
