@@ -17,7 +17,7 @@ public class TaxFormatterTest {
                 new BigDecimal(3516.6674124D).setScale(2, RoundingMode.HALF_UP);
 
         //When
-        final BigDecimal formattedCompanyTaxValue = TaxFormatter.getFormattedCompanyTaxValue(companyTaxValue);
+        final BigDecimal formattedCompanyTaxValue = TaxFormatter.format(companyTaxValue);
 
         //Then
         assertThat(formattedCompanyTaxValue).isEqualTo(expectedFormattedCompanyTaxValue);

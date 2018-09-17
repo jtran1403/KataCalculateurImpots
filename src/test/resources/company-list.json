@@ -1,0 +1,34 @@
+[
+  {
+    "company": {
+      "siretNumber": "RCS PARIS 453 983 245",
+      "name": "Entreprise à Paris",
+      "type": "SAS",
+      "headOfficeAddress": "25 rue victor hugo"
+    },
+    "companyTurnover": {
+      "value": 10000000.00
+    }
+  },
+  {
+    "company": {
+      "siretNumber": "RC NANTES 234 987 456",
+      "name": "Entreprise à Nantes",
+      "type": "SAS",
+      "headOfficeAddress": "25 avenue de nantes"
+    },
+    "companyTurnover": {
+      "value": 5000000.00
+    }
+  },
+  {
+    "company": {
+      "siretNumber": "732 829 320 00074",
+      "name": "Ma start up",
+      "type": "AUTOENTREPRENEUR"
+    },
+    "companyTurnover": {
+      "value": 22500.50
+    }
+  }
+]
